@@ -50,7 +50,7 @@ func httpHomePage(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	provider, err := oidc.NewProvider(context.Background(), "https://yourname.b2clogin.com/tfp/yourtenantid/b2c_1_signup/v2.0/") //REPLACE THIS WITH YOUR VALUE
+	provider, err := oidc.NewProvider(context.Background(), "https://yourdomainname.b2clogin.com/tfp/yourtenantid/yourUserFlow/v2.0/") //REPLACE THIS WITH YOUR VALUE
 	if err != nil {
 		log.Fatal(err)
 	}

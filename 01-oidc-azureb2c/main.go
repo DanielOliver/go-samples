@@ -38,6 +38,16 @@ func (amw *authenticationMiddleware) Middleware(next http.Handler) http.Handler 
 		}
 		fmt.Printf("%+v\n", idToken)
 
+		var claims struct {
+			Emails []string `json:"emails"`
+		}
+		if err := idToken.Claims(&claims); err != nil {
+			fmt.Println(err)
+			http.Error(w, "Unable to retrieve claims", http.StatusUnauthorized)
+			return
+		}
+		fmt.Printf("%+v\n", claims)
+
 		// Call the next handler, which can be another middleware in the chain, or the final handler.
 		next.ServeHTTP(w, r)
 	})
